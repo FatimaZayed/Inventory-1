@@ -28,7 +28,15 @@
 @endsection
 @section('content')
     <!-- row -->
+
     <div class="row">
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
 
         <div class="my-auto">
             <div class="d-flex">
@@ -62,7 +70,7 @@
                             </tr>
                         @endforeach
 
-                        <button type="submit" class="btn btn-success" id="Allselected" >CONFIRM </button>
+                        <button type="submit" class="btn btn-success" id="Allselected">CONFIRM </button>
                         {{-- <a href="{{ route('allselect')}}" class="btn btn-success" id="Allselected"> CONFIRM3 </a> --}}
                         <p></p>
                     </form>
@@ -103,7 +111,7 @@
     });
 </script> --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
+    {{-- <script>
         $(function() {
             $("#cheCheckAll").click(function() {
                 $(".checkboxclass").prop('checked', $(this).prop('checked'));
@@ -138,5 +146,5 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 @endsection

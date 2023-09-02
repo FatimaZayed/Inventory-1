@@ -29,6 +29,12 @@
 @section('content')
     <!-- row -->
     <div class="row">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
 
         <div class="my-auto">
             <div class="d-flex">
@@ -47,7 +53,7 @@
 
                     <tr style="text-align: center" class="table-success">
                         <th class="border-bottom-0">id</th>
-                        <th class="border-bottom-0">User Adminstration role= admin</th>
+                        <th class="border-bottom-0">Status</th>
                         <th class="border-bottom-0">User Adminstration role= admin</th>
                     </tr>
 
@@ -55,13 +61,13 @@
                 </thead>
                 <tbody>
 
+                    @if (!empty($company))
+                        @foreach ($company as $s)
+                            <tr style="text-align: center" class="">
+                                <td>{{ $s->id }}</td>
 
-                    @if (!empty($selected))
-                        @foreach ($selected as $company)
-                            <tr>
-                                <td>{{ $company->id }}</td>
-                                <td>{{ $company->Company_name }}</td>
-                                <td>{{ $company->Person_Name }}</td>
+                                <td>{{ $s->Business_Activity }}</td>
+                                <td>{{ $s->Company_name }}</td>
                             </tr>
                         @endforeach
                     @endif

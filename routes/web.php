@@ -66,7 +66,7 @@ Auth::routes(['register'=>false]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('home/fetch/{id}', [App\Http\Controllers\HomeController::class, 'fetch'])->name('home.fetch');
 // Route::get('allsellect', [App\Http\Controllers\HomeController::class, 'allselect'])->name('allselect');
-Route::post('allselect', [App\Http\Controllers\HomeController::class, 'allselect'])->name('allselect');
+Route::get('allselect', [App\Http\Controllers\HomeController::class, 'allselect'])->name('allselect');
 Route::get('userDashboard', [App\Http\Controllers\HomeController::class, 'userDashboard'])->name('user_dashboard');
 Route::get('/show-ids', [App\Http\Controllers\HomeController::class, 'showIds'])->name('show.ids');
 // Route::get('/show-ids', 'YourController@showIds')->name('show.ids');

@@ -115,14 +115,17 @@ function fetch( $id)
     public function allselect(Request $request ){
 
 
+        // dd($request);
         $ids = $request->input('selected_ids');
         $data = User::get();
 
+
         if (!empty($ids)) {
-        $selected = User::whereIn('id', $ids)->get();
-        return view('advertisements.user_dashboard', compact('selected','data'));
+            $selected = User::whereIn('id', $ids)->get();
+            $company= Companies::whereIn('id',$ids)->get();
+        return view('advertisements.user_dashboard', compact('selected','data','company'))->with('success','Request has been Sent successfully!,Please wait for response');
     } else {
-        return back();
+        return back()->with('error','Request has been failed!,Please try again');
     }
 }
 

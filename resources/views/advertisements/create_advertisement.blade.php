@@ -33,17 +33,17 @@
                             <form action="{{ route('advertisements.create') }}" class="row g-3 formvalidate" id="form" enctype="multipart/form-data" method="post">
                             @csrf
                             <div class="col-md-4">
-                                <label for="name:en" class="form-label">Type :-</label>
+                                <label for="name:en" class="form-label">Type :</label>
                                 <input type="text" data-validation="required" data-validation-required="required"
                                     id="type" name="type" class="form-control">
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Description :-</label>
+                                <label class="form-label">Description :</label>
                                 <input type="text" data-validation="required" data-validation-required="required"
                                     id="description" name="description" class="form-control">
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Link :-</label>
+                                <label class="form-label">Link :</label>
                                 <input type="link" data-validation="required" data-validation-required="required"
                                 id="link" name="link" class="form-control">
                             </div>
@@ -65,7 +65,7 @@
                                             <h6>Photo :</h6>
                                             <input type="file" name="image" class="dropify">
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
