@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\attached;
+use App\Models\Advertisements;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\attached;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Companies extends Model
 {
@@ -30,6 +31,12 @@ class Companies extends Model
 ];
 
     protected $table = 'companies';
+
+
+    // public function advertisements()
+    // {
+    //     return $this->hasMany(Advertisements::class);
+    // }
 
     public function inventoryco()
     {

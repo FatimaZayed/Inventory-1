@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('advertisements', function (Blueprint $table) {
+        Schema::create('advertisements', function (Blueprint $table){
             $table->id();
-            $table->string('type');
+            $table->string('Business_Activity');
             $table->string('description');
             $table->string('image')->nullable();
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

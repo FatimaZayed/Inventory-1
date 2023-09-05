@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisements;
 use App\Models\Companies;
 use App\Models\Categories;
 use App\Models\Subcategories;
@@ -181,6 +182,9 @@ public function ListCustomers()
 
 
 
+
+
+
     public function editlogo()//$id,$user_id
     {
        // $user= User::find($user_id);
@@ -248,7 +252,7 @@ public function ListCustomers()
 
             'Phone' => $request->Phone,
             'companytype_id' => $request->companytype_id,
-            'Company_Logo' => $imageName,
+            // 'Company_Logo' => $imageName,
             'Company_website' => $request->Company_website,
             'Company_Address' => $request->Company_Address,
             'Business_Activity' => $request->Business_Activity,
@@ -260,7 +264,7 @@ public function ListCustomers()
             // 'Approver_Name' => $request->Approver_Name,
             // 'Approver_date' => $request->Approver_date,
         ]);
-        return redirect('/home')->with('success', 'Request has been updated Successfully!');
+        return redirect('/dashboard_Adminstration')->with('success', 'Request has been updated Successfully!');
     }
 
     /**

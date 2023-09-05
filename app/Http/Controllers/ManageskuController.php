@@ -117,6 +117,7 @@ class ManageskuController extends Controller
 
     public function create(Request $request)
     {
+
         DB::table('managesku')->create([
 
            // 'products_id' => $request->products_id,
@@ -143,6 +144,7 @@ class ManageskuController extends Controller
         $validatedData = $request->validate([
             'SKU' => 'required|unique:managesku|max:255',
         ], [
+            
 
             'SKU.required' => 'Please Enter the SKU ',
             'SKU.unique' => 'this name is exist ',

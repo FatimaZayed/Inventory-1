@@ -11,9 +11,15 @@ class Advertisements extends Model
 
     protected $fillable =
     [
-        'type',
+        'Business_Activity',
         'description',
         'image',
         'link'
     ];
+
+
+    // public function company()
+    // {
+    //     return $this->belongsTo(Companies::class);
+    // }
 }

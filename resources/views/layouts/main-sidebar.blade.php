@@ -255,8 +255,9 @@
                     @endcan
                         <li><a class="slide-item" href="/Ad_Adminstration">Adminstration</a></li>
                         <li><a class="slide-item" href="/dashboard_Adminstration">dashboard_Adminstration</a></li>
-                        <li><a class="slide-item" href="/user_ dashboard">user_ dashboard</a></li>
+                        {{-- <li><a class="slide-item" href="/user_ dashboard">user_ dashboard</a></li> --}}
                         <li><a class="slide-item" href="/Advertisements.create">Create</a></li>
+                        <li><a class="slide-item" href="/Advertisements_show">show</a></li>
                 </ul>
 
 

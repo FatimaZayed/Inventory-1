@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advertisements;
+use App\Models\Companies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,14 +28,14 @@ class AdvertisementsController extends Controller
      public function create(Request $request)
      {
         if($request->hasFile('image')){
-            $destination ='public/images/brands';
+            $destination ='public/images';
             $image = $request->file('image');
             $image_name =$image ->getClientOriginalName();
             $path=$request-> file('image')->storeAs($destination,$image_name);
             $data['image']=$image_name;
         }
          $advertisement = Advertisements::create([
-             'type' => $request['type'],
+             'Business_Activity' => $request['Business_Activity'],
              'description' => $request['description'],
              'image' => $image_name,
              'link' => $request['link'],
@@ -43,7 +44,8 @@ class AdvertisementsController extends Controller
          if (!$advertisement) {
              return redirect()->back()->withErrors(['error' => 'Failed to create advertisement']);
          }
-         return redirect()->back()->with('success', 'Advertisement created successfully');
+
+         return redirect()->back()->with('message', 'Advertisements created successfully!');
      }
 
     /**
@@ -54,7 +56,17 @@ class AdvertisementsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->only('Business_Activity');
+
+        $avd = Advertisements::create($data);
+
+        // $ids = $request->Business_Activity;
+        // //    $ids = Companies::get();
+        //    $adv = Advertisements::where('id', $ids);
+        //    dd($adv);
+            // return back()->with("success",'sdsvdf');
+
     }
 
     /**
@@ -63,9 +75,10 @@ class AdvertisementsController extends Controller
      * @param  \App\Models\Advertisements  $advertisements
      * @return \Illuminate\Http\Response
      */
-    public function show(Advertisements $advertisements)
+    public function show()
     {
-        //
+        $advertisements = Advertisements::get();
+        return view('advertisements/show',compact('advertisements'));
     }
 
     /**
@@ -78,6 +91,7 @@ class AdvertisementsController extends Controller
     {
         //
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -97,8 +111,11 @@ class AdvertisementsController extends Controller
      * @param  \App\Models\Advertisements  $advertisements
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Advertisements $advertisements)
+    public function destroy($id)
     {
-        //
+        // dd($id);
+        $adv = Advertisements::findOrfail($id);
+        $adv->delete();
+        return redirect()->back()->with('error', 'Advertisements deleted successfully!');
     }
 }

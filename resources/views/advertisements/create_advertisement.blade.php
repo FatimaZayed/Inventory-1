@@ -20,7 +20,14 @@
 @section('content')
     <!-- row -->
     <div class="row">
-        <div id="list-item-1"  style="content:" class="card fieldset border border-muted mt-0">
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+        <div id="list-item-1" style="content:" class="card fieldset border border-muted mt-0">
+
+
 
             <span class="fieldset-tile"></span>
             <div class="card">
@@ -30,12 +37,13 @@
                     </div>
                     <div class="card-body">
                         {{-- <form action="" class="row g-3 formvalidate" id="form" enctype="multipart/form-data"> --}}
-                            <form action="{{ route('advertisements.create') }}" class="row g-3 formvalidate" id="form" enctype="multipart/form-data" method="post">
+                        <form action="{{ route('advertisements.create') }}" class="row g-3 formvalidate" id="form"
+                            enctype="multipart/form-data" method="post">
                             @csrf
                             <div class="col-md-4">
-                                <label for="name:en" class="form-label">Type :</label>
+                                <label for="name:en" class="form-label">Business_Activity :</label>
                                 <input type="text" data-validation="required" data-validation-required="required"
-                                    id="type" name="type" class="form-control">
+                                    id="type" name="Business_Activity" class="form-control">
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Description :</label>
@@ -45,7 +53,7 @@
                             <div class="col-md-4">
                                 <label class="form-label">Link :</label>
                                 <input type="link" data-validation="required" data-validation-required="required"
-                                id="link" name="link" class="form-control">
+                                    id="link" name="link" class="form-control">
                             </div>
                             <div class="col-md-6">
                             </div>
@@ -69,22 +77,24 @@
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" id="btn-submit" class="btn btn-primary">Create</button>
-                            </div>
-                        </form>
                     </div>
-
+                    <div class="col-12">
+                        <button type="submit" id="btn-submit" class="btn btn-primary">Create</button>
+                    </div>
+                    </form>
                 </div>
 
             </div>
-            <!-- row closed -->
+
         </div>
-        <!-- Container closed -->
+        <!-- row closed -->
+    </div>
+    <!-- Container closed -->
     </div>
     <!-- main-content closed -->
 @endsection
 @section('js')
-<script>$('.dropify').dropify();</script>
+    <script>
+        $('.dropify').dropify();
+    </script>
 @endsection

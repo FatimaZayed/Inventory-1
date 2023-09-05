@@ -56,6 +56,7 @@
                         <th class="border-bottom-0">Business Activity</th>
                         <th class="border-bottom-0">Company Name</th>
                         <th class="border-bottom-0">Person Name</th>
+                        <th class="border-bottom-0">Process</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,10 +68,11 @@
                                 <td>{{ $d->Business_Activity }}</td>
                                 <td>{{ $d->Company_name }}</td>
                                 <td>{{ $d->Person_Name }}</td>
+                                <td><a href="Company-edit/{{ $d->id }}" class="btn btn-danger">Edit</td>
                             </tr>
                         @endforeach
 
-                        <button type="submit" class="btn btn-success" id="Allselected">CONFIRM </button>
+                        <button type="submit" class="btn btn-success" id="Allselected">CONFIRM</button>
                         {{-- <a href="{{ route('allselect')}}" class="btn btn-success" id="Allselected"> CONFIRM3 </a> --}}
                         <p></p>
                     </form>

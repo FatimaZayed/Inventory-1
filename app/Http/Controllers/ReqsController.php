@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\demoMail;
-
+use App\Models\Advertisements;
 use App\Models\Reqs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -213,7 +213,10 @@ DB::table('companyreqs')->where('id',$Co_Req)->update(['status_id'=>3]);
             'inventory_id'=>1,
             'Created_by'=>(Auth::user()->name),
             'created_at'=>date('Y-m-d H:i:s'),
+        ]);
 
+        $adver= Advertisements::create([
+            'type' => $reqs->Business_Activity,
         ]);
 
 

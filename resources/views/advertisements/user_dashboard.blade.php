@@ -1,3 +1,4 @@
+use App\Models\Companies;
 @extends('layouts.master')
 @section('css')
 @endsection
@@ -29,6 +30,7 @@
 @section('content')
     <!-- row -->
     <div class="row">
+        
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -36,12 +38,20 @@
         @endif
 
 
+
+
+
         <div class="my-auto">
             <div class="d-flex">
-                <h2 class="content-title mb-0 my-auto">Chain Nest Adminstration</h2></span>
+                @if (!$company->isEmpty())
+                    @foreach ($company as $c)
+                        <h2 class="content-title mb-0 my-auto">{{ $c->Person_Name }}</h2>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
+
     <!-- row closed -->
     </div>
 
@@ -53,8 +63,9 @@
 
                     <tr style="text-align: center" class="table-success">
                         <th class="border-bottom-0">id</th>
-                        <th class="border-bottom-0">Status</th>
+                        <th class="border-bottom-0">Business_Activity</th>
                         <th class="border-bottom-0">User Adminstration role= admin</th>
+                        <th class="border-bottom-0">Process</th>
                     </tr>
 
 
@@ -65,9 +76,9 @@
                         @foreach ($company as $s)
                             <tr style="text-align: center" class="">
                                 <td>{{ $s->id }}</td>
-
                                 <td>{{ $s->Business_Activity }}</td>
                                 <td>{{ $s->Company_name }}</td>
+                                <td><a href="Company-done/{{ $s->id }}" class="btn btn-info">Done</td>
                             </tr>
                         @endforeach
                     @endif

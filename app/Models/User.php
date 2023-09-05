@@ -55,7 +55,7 @@ class User extends Authenticatable
         'adminchain',
         'inventory_id',
         'companies_id',
-        'Status',
+       
 
     ];
 

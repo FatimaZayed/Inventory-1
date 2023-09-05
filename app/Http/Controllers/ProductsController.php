@@ -2,34 +2,35 @@
 
 namespace App\Http\Controllers;
 use Carbon\Carbon;
-use App\Models\attached;
-use Illuminate\Support\Facades\Mail;
-use App\Models\companyreq;
+use App\Models\User;
+use App\Models\unitt;
 use App\Mail\demoMail;
-use App\Models\inventory;
+use App\Models\attached;
+use App\Models\currancy;
+use App\Models\products;
 
 
 //use App\Models\products;
-use App\Models\Subcategories;
-use App\Models\unitt;
-use App\Models\productype;
-use App\Models\User;
-use App\Models\currancy;
-use Illuminate\Support\Facades\File;
-//use App\Http\Requests\StoreInventoryRequest;
-use Illuminate\Support\Facades\Auth;
-
-use App\Models\Categories;
 use App\Models\Companies;
+use App\Models\inventory;
 use App\Models\managesku;
-//use Notification;
-use Illuminate\Support\Facades\Notification;// this important to use send word in notification
-
-
-use Illuminate\Support\Facades\DB;
-
-use App\Models\products;
+use App\Models\Categories;
+use App\Models\companyreq;
+use App\Models\productype;
+//use App\Http\Requests\StoreInventoryRequest;
 use Illuminate\Http\Request;
+
+use App\Models\Subcategories;
+use App\Notifications\Addproduct;
+use Illuminate\Support\Facades\DB;
+//use Notification;
+use Illuminate\Support\Facades\Auth;// this important to use send word in notification
+
+
+use Illuminate\Support\Facades\File;
+
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class ProductsController extends Controller
 {
@@ -172,7 +173,7 @@ public function printt($id)//$id
         $products = $products->where('companies_id', Auth::user()->companies_id)->get();
     }
 
-    Notification::send($user,new \App\Notifications\Addproduct($product));
+    Notification::send($user,new Addproduct($product));
 
 
    // dd('Task completed!');
@@ -816,7 +817,7 @@ if($request->Reorder_QTY !=null){
 
         if (Auth::user()->companies_id == 1) {
             $products = $products->get();
-            
+
         } else {
             $products = $products->where('companies_id', Auth::user()->companies_id)->get();
         }

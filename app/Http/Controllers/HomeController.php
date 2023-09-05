@@ -123,6 +123,7 @@ function fetch( $id)
         if (!empty($ids)) {
             $selected = User::whereIn('id', $ids)->get();
             $company= Companies::whereIn('id',$ids)->get();
+            
         return view('advertisements.user_dashboard', compact('selected','data','company'))->with('success','Request has been Sent successfully!,Please wait for response');
     } else {
         return back()->with('error','Request has been failed!,Please try again');
