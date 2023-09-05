@@ -25,22 +25,44 @@ class AdvertisementsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function create(Request $request)
+     public function create(Request $request ,$id)
      {
-        if($request->hasFile('image')){
-            $destination ='public/images';
-            $image = $request->file('image');
-            $image_name =$image ->getClientOriginalName();
-            $path=$request-> file('image')->storeAs($destination,$image_name);
-            $data['image']=$image_name;
+
+        $product = Companies::find($id);
+
+        // if($request->hasFile('image')){
+        //     $destination ='public/images';
+        //     $image = $request->file('image');
+        //     $image_name =$image ->getClientOriginalName();
+        //     $path=$request-> file('image')->storeAs($destination,$image_name);
+        //     $data['image']=$image_name;
+        // }
+        // $image_path = $request->file('image')->store('image', 'public');
+        $imageName = "";
+        if($request->hasFile("cover")){
+            $file=$request->file("cover");
+            $imageName=time().'_'.$file->getClientOriginalName();
+            $file->move(\public_path("cover/"),$imageName);
         }
+
          $advertisement = Advertisements::create([
              'Business_Activity' => $request['Business_Activity'],
              'description' => $request['description'],
-             'image' => $image_name,
+             'image' => $imageName,
              'link' => $request['link'],
+             'company_id' =>1
             ]);
          $advertisement->save();
+
+
+
+         $company = Companies::where('id',1);
+        $company = new Companies([
+            'Business_Activity' => $request->input('Business_Activity'),
+        ]);
+        $company->update();
+
+
          if (!$advertisement) {
              return redirect()->back()->withErrors(['error' => 'Failed to create advertisement']);
          }
@@ -54,19 +76,34 @@ class AdvertisementsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    // $data = $request->only('Business_Activity');
+    // dd($data);
+    // $avd = Advertisements::create($data);
+    // return back()->with("success",'done');
+
+
+    public function store(Request $request ,$id)
     {
+        // $product = Companies::find($id);
+        // $transaction = new Companies([
+        //     'Business_Activity' => $request['Business_Activity'],
+        // ]);
+        // $transaction->save();
+        $company = Companies::find($id);
 
-        $data = $request->only('Business_Activity');
+        // حفظ قيمة Business_Activity في جدول companies
+        $company->Business_Activity = $request->input('Business_Activity');
+        $company->save();
 
-        $avd = Advertisements::create($data);
+        // إنشاء إعلان وحفظ قيمته في جدول advertisements
 
-        // $ids = $request->Business_Activity;
-        // //    $ids = Companies::get();
-        //    $adv = Advertisements::where('id', $ids);
-        //    dd($adv);
-            // return back()->with("success",'sdsvdf');
+        $advertisement = Advertisements::find($id);
+        $advertisement = new Advertisements([
+            'Business_Activity' => $request->input('Business_Activity'),
+        ]);
+        $advertisement->update();
 
+        dd("done");
     }
 
     /**

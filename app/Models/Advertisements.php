@@ -14,12 +14,13 @@ class Advertisements extends Model
         'Business_Activity',
         'description',
         'image',
-        'link'
+        'link',
+        'company_id'
     ];
 
 
-    // public function company()
-    // {
-    //     return $this->belongsTo(Companies::class);
-    // }
+    public function company()
+    {
+        return $this->belongsTo(Companies::class);
+    }
 }

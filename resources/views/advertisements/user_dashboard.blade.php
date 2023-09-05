@@ -30,7 +30,7 @@ use App\Models\Companies;
 @section('content')
     <!-- row -->
     <div class="row">
-        
+
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -42,7 +42,8 @@ use App\Models\Companies;
 
 
         <div class="my-auto">
-            <div class="d-flex">
+            <div class="d-flex" >
+
                 @if (!$company->isEmpty())
                     @foreach ($company as $c)
                         <h2 class="content-title mb-0 my-auto">{{ $c->Person_Name }}</h2>
@@ -73,15 +74,19 @@ use App\Models\Companies;
                 <tbody>
 
                     @if (!empty($company))
-                        @foreach ($company as $s)
+                    @foreach ($company as $s)
+                    <form method="POST" action="{{ route('Company-done', ['id' => $s->id]) }}">
+                        @csrf
                             <tr style="text-align: center" class="">
                                 <td>{{ $s->id }}</td>
                                 <td>{{ $s->Business_Activity }}</td>
+                                <input hidden type="text" name="Business_Activity" value="{{ $s->Business_Activity }}" />
                                 <td>{{ $s->Company_name }}</td>
-                                <td><a href="Company-done/{{ $s->id }}" class="btn btn-info">Done</td>
+                                <td><button type="submit" class="btn btn-info">Done</button></td>
                             </tr>
-                        @endforeach
-                    @endif
+                            @endforeach
+                            @endif
+                        </form>
                 </tbody>
             </table>
         </div>

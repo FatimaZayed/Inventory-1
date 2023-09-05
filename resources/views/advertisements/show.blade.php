@@ -18,10 +18,10 @@
     <!-- row -->
     <div class="row">
         @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
 
         <table id="example" class="table key-buttons text-md-nowrap">
             <thead>
@@ -37,20 +37,21 @@
             </thead>
             <tbody>
                 @foreach ($advertisements as $adv)
-                <tr style="text-align: center" id="">
+                    <tr style="text-align: center" id="">
 
-                    <td>{{$adv->id}}</td>
-                    <td>{{$adv->Business_Activity}}</td>
-                    <td>{{$adv->description}}</td>
-                    {{-- <td>{{$adv->image}}</td> --}}
-                    {{-- <td><img src="{{ asset('path/to/images/' . $adv->image) }}"></td> --}}
-                    <td><img src="image/{{ $adv->imagename }}" class="img-responsive"
-                        style="max-height:100px; max-width:100px" alt="" srcset="">
-                </td>
-                </td>
-                    <td>{{$adv->link}}</td>
-                    <td><a href="delete/{{ $adv->id }}" class="btn btn-outline-danger">Delete</td>
-                </tr>
+                        <td>{{ $adv->id }}</td>
+                        <td>{{ $adv->Business_Activity }}</td>
+                        <td>{{ $adv->description }}</td>
+
+                        {{-- <td><img src="{{ asset('public/image/' . $adv->image) }}" style="height: 100px; width: 150px;"></td> --}}
+                        {{-- <td><img src="{{ url('storage/' . $adv->image) }}" style="height: 100px; width: 150px;"></td> --}}
+                        <td><img src="cover/{{ $adv->image }}" class="img-responsive"
+                            style="max-height:100px; max-width:100px" alt="" srcset=""></td>
+
+                        </td>
+                        <td>{{ $adv->link }}</td>
+                        <td><a href="delete/{{ $adv->id }}" class="btn btn-outline-danger">Delete</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

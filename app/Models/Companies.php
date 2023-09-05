@@ -33,10 +33,10 @@ class Companies extends Model
     protected $table = 'companies';
 
 
-    // public function advertisements()
-    // {
-    //     return $this->hasMany(Advertisements::class);
-    // }
+    public function advertisements()
+    {
+        return $this->hasMany(Advertisements::class);
+    }
 
     public function inventoryco()
     {

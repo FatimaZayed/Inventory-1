@@ -70,7 +70,7 @@ Route::get('allselect', [App\Http\Controllers\HomeController::class, 'allselect'
 Route::get('userDashboard', [App\Http\Controllers\HomeController::class, 'userDashboard'])->name('user_dashboard');
 Route::get('/show-ids', [App\Http\Controllers\HomeController::class, 'showIds'])->name('show.ids');
 // Route::get('/show-ids', 'YourController@showIds')->name('show.ids');
-Route::post('/advertisements', [AdvertisementsController::class, 'create'])->name('advertisements.create');
+Route::post('/advertisements/{id}', [AdvertisementsController::class, 'create'])->name('advertisements.create');
 Route::get('/Advertisements_show', [AdvertisementsController::class, 'show'])->name('advertisements.show');
 
 
@@ -291,7 +291,7 @@ Route::get('SuppliersList', [App\Http\Controllers\CompaniesController::class, 'L
 Route::post('Comp-Ajax', [App\Http\Controllers\CompaniesController::class, 'updateAjax'])->name('Comp.updateAjex');
 Route::get('company-show/{id}', [App\Http\Controllers\CompaniesController::class, 'show'])->name('show.company');
 Route::get('Company-edit/{id}', [App\Http\Controllers\CompaniesController::class, 'edit'])->name('edit.company');
-Route::get('Company-done/{id}', [App\Http\Controllers\AdvertisementsController::class, 'store'])->name('done.company');
+Route::post('Company-done/{id}', [App\Http\Controllers\AdvertisementsController::class, 'store'])->name('Company-done');
 Route::get('delete/{id}', [App\Http\Controllers\AdvertisementsController::class, 'destroy'])->name('delete');
 
 Route::post('company-update/{id}', [App\Http\Controllers\CompaniesController::class, 'update'])->name('update.company');

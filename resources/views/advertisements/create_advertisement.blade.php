@@ -37,9 +37,10 @@
                     </div>
                     <div class="card-body">
                         {{-- <form action="" class="row g-3 formvalidate" id="form" enctype="multipart/form-data"> --}}
-                        <form action="{{ route('advertisements.create') }}" class="row g-3 formvalidate" id="form"
+                        <form action="{{ route('advertisements.create', ['id']) }}" class="row g-3 formvalidate" id="form"
                             enctype="multipart/form-data" method="post">
                             @csrf
+
                             <div class="col-md-4">
                                 <label for="name:en" class="form-label">Business_Activity :</label>
                                 <input type="text" data-validation="required" data-validation-required="required"
@@ -68,13 +69,23 @@
                                             name="images[]" multiple>
                                     </div> --}}
 
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h6>Photo :</h6>
-                                            <input type="file" name="image" class="dropify">
-                                        </div>
+                                    <div class="form-group">
+
+
+                                        <label class="m-2">Cover Image</label>
+                                        <input type="file" id="input-file-now-custom-3" class="form-control m-2"
+                                            name="cover">
+
+                                        <p class="text-danger" style="text-align: right">* attached format
+                                            pdf, jpeg ,.jpg ,
+                                            png,.xlx, .csv, .gif, .svg
+                                        </p>
+                                        {{-- <label class="m-2">Images</label>
+                                        <input type="file" id="input-file-now-custom-3" class="form-control m-2"
+                                            name="images[]" multiple> --}}
 
                                     </div>
+
                                 </div>
                             </div>
                     </div>
